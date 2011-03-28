@@ -6,6 +6,10 @@ TRANSCODE_HLS="transcode_hls.sh"
 ### parameters
 SOURCENAME="$1"
 
+# default to 10 seconds segment duration
+DURA=10
+test -n "$2" && DURA="$2"
+
 ### sanity check
 test -n "${SOURCENAME}" || exit -1
 FNAME=`basename "${SOURCENAME}"`
@@ -27,7 +31,7 @@ do
     BITDIR="${OUTDIR}/${BITRATE}"
     mkdir "${BITDIR}"
     pushd "${BITDIR}"
-    mediafilesegmenter -i index.m3u8 -generate-variant-plist "../../${TSNAME}"
+    mediafilesegmenter -i index.m3u8 -t "${DURA}" -generate-variant-plist "../../${TSNAME}"
     popd
 
     PLIST="${WORKDIR}/${BASENAME}-${BITRATE}.plist"
