@@ -3,8 +3,16 @@
 require 'uri'
 
 def usage
-  puts "USAGE: #{$0} TITLE PROVISION_URL PLIST_FNAME"
-  exit
+  puts <<EOF
+USAGE:  #{$0} TITLE PROVISION_URL PLIST_FNAME"
+
+TITLE         - i.e., "Angry Bird rev 0.0.4"
+PROVISION_URL - full URL of the the provisioning profile:  i.e.,
+                "http://example.com/dl/4565-B2B7-A2FEC8A50757.mobileprovision"
+PLIST_FNAME   - filename (including extension) of the plist file:  i.e.,
+                "angrybird.plist"
+EOF
+  exit 1
 end
 
 def get_base_dir url
