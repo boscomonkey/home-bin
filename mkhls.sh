@@ -16,7 +16,7 @@
 #		> 600k"
 
 ### constants
-TRANSCODE_HLS="transcode_264.sh"
+TRANSCODE_HLS="transcode_hls.sh"
 
 ### parameters
 SOURCENAME="$1"
