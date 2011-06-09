@@ -1,14 +1,34 @@
 #!/bin/sh
 
+# Transcodes a video into HLS with variant bitrates of 800k, 600k, and
+# 400k. Places all variant slices into their own bitrate directory
+# under a distributable directory whose name is the basename of the
+# source video.
+#
+# USAGE:	mkhls.sh SOURCE_VIDEO OPTIONAL_BITRATES
+#
+#		OPTIONAL_BITRATES can be omitted, but can be specified
+#		via a quoted list of bitrates with each rate on a
+#		different line. For example.
+#
+#		$ mkhls casino-royale.mp4 "1200k
+#		> 900k
+#		> 600k"
+
 ### constants
-TRANSCODE_HLS="transcode_hls.sh"
+TRANSCODE_HLS="transcode_264.sh"
 
 ### parameters
 SOURCENAME="$1"
 
 # default to 10 seconds segment duration
 DURA=10
-test -n "$2" && DURA="$2"
+
+# default bitrates to 800k 600k 400k
+RATES="800k
+600k
+400k"
+test -n "$2" && RATES="$2"
 
 ### sanity check
 test -n "${SOURCENAME}" || exit -1
@@ -23,7 +43,7 @@ mkdir "${WORKDIR}"
 
 ### cycle through bit rates
 VARIANTS=""
-for BITRATE in 110k 200k 400k 600k 800k
+for BITRATE in ${RATES}
 do
     TSNAME="${WORKDIR}/${BASENAME}-${BITRATE}.ts"
     ${TRANSCODE_HLS} ${SOURCENAME} ${TSNAME} ${BITRATE}
