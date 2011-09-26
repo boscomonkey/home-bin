@@ -45,7 +45,8 @@ print <<EOF
   </head>
 
   <body>
-    <div data-role="page" id="splash" data-title="#{title}">
+    <div data-theme="b"
+         data-role="page" id="splash" data-title="#{title}">
       <div data-role="header">
         <h1>#{title}</h1>
       </div>
@@ -63,10 +64,8 @@ print <<EOF
           finish the installation.
         </p>
 
-        <!--
-                NOTE: bit.ly the provisioning file URL
-        -->
         <a href="#{provision_url}"
+           rel="external"
            data-role="button" data-icon="arrow-r"
            data-iconpos="right">Install Provisioning File</a>
         <a href="itms-services://?action=download-manifest&url=#{plist_url}"
@@ -74,9 +73,11 @@ print <<EOF
               data-iconpos="right">Install Application</a>
       </div>
 
+      <!--
       <div data-role="footer">
         <h4>#{Time.now}</h4>
       </div>
+      -->
     </div>
 
   </body>
