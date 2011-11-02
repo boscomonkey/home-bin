@@ -37,10 +37,15 @@ print <<EOF
     <title>#{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.css" />
-    <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
     <style>
+		.qrcode {
+			display: block;
+			margin: 0 auto;
+			padding: 4px;
+		}
     </style>
   </head>
 
@@ -64,6 +69,7 @@ print <<EOF
           finish the installation.
         </p>
 
+        <div data-role="fieldcontain">
         <a href="#{provision_url}"
            rel="external"
            data-role="button" data-icon="arrow-r"
@@ -71,6 +77,17 @@ print <<EOF
         <a href="itms-services://?action=download-manifest&url=#{plist_url}"
               data-role="button" data-icon="arrow-r"
               data-iconpos="right">Install Application</a>
+          		</div>
+
+        <div data-role="fieldcontain">
+      		<p>Scan this QR code with your iPhone (e.g., NeoReader, RedLaser, etc) to load this page:</p>
+
+  				<script>
+  				document.write("<img class='qrcode' src='http://chart.apis.google.com/chart?cht=qr&chs=150x150&chld=H|0&chl="
+  								+ document.location.href
+  								+ "' />");
+  				</script>
+  			</div>
       </div>
 
       <!--
