@@ -1,3 +1,3 @@
 #!/bin/sh
 
-git st | ruby -ne 'puts "#{$1}" if /^\#\s+(\S+)$/'
+git status | ruby -ne 'puts("\"#{$1}\"") if /^#\t([^:]+)?\s+$/'
