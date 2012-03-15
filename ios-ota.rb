@@ -57,8 +57,10 @@ print <<EOF
       </div>
 
       <div data-role="content">
+        <h3>#{title}</h3>
+
         <p>
-          In order to install this app on your IOS 4.2 (or later)
+          In order to install this app on your IOS 4.0 (or later)
           device, click the two buttons below in the order in which
           they appear.
         </p>
