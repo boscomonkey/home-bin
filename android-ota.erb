@@ -1,0 +1,53 @@
+<!-- -*-html-*- -->
+<%
+=begin
+   android-ota.erb
+
+   ERB template to generate a jQuery Mobile page for Android OTA
+   deployment. Requires TITLE and APK variables to be set for the
+   output HTML to make sense.
+
+   Command line example:
+   $ TITLE='Label Scanner' APK=foo.apk erb android-ota.erb
+
+=end
+%>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= ENV["TITLE"] %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>
+
+  </head>
+  <body>
+    
+    <!-- Begin: page -->
+    <section data-role="page" id="page1" data-title="<%= ENV["TITLE"] %>">
+      <header data-role="header" data-position="fixed">
+	<h1><%= ENV["TITLE"] %></h1>
+      </header>
+
+      <div data-role="content">
+        <h3><%= ENV["TITLE"] %></h3>
+        <h4>Android Version</h4>
+
+        <p>
+          In order to install this app on your Android device, tap the
+          button below.
+        </p>
+
+	<a
+           href="<%= ENV["APK"] %>"
+           data-role="button"
+           rel="external"
+           >Install Android app</a>
+
+      </div>
+    </section>
+
+  </body>
+</html>
