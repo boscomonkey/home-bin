@@ -17,7 +17,7 @@ tell application "Terminal"
     repeat with win in windows
         try
             if get frontmost of win is true then
-                do script "cd $PATHDIR; clear" in (selected tab of win)
+                do script "cd $PATHDIR" in (selected tab of win)
             end if
         end try
     end repeat
