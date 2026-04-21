@@ -1,0 +1,14 @@
+#!/usr/bin/env perl -spi
+
+# Normalize Rails schema.rb datetime column declarations in place:
+#   - add `precision: 6` to naked t.datetime "..._at" columns
+#   - strip redundant `precision: nil` / `precision: 6`
+#   - preserve `null: false` while setting precision
+#
+# Usage: fix-db-schema db/schema.rb
+
+s/^(    t.datetime "(\w+)_at")$/$1, precision: 6/;
+s/^(    t.datetime "(\w+)_at"), precision: (nil|6)$/$1/;
+s/^(    t.datetime "(\w+)_at"), null: false$/$1, precision: 6, null: false/;
+s/^(    t.datetime "(\w+)_(at|date)"), precision: nil, null: false$/$1, null: false/;
+s/^(    t.datetime "(\w+)_(at|date)"), precision: nil$/$1/;

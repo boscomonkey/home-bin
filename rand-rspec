@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Run the argument rspec files `COUNT` times; if `COUNT` is undefined,
+# default to 10. Rspec is invoked with "--order random" and breaks on
+# the first failure.
+
+cmd="rspec --order random"
+count=${COUNT:-10}
+for index in $(seq 1 $count); do
+    echo '********' ${index}/${count} '********'
+    $cmd $* || exit 1
+done
